@@ -1,6 +1,7 @@
 package edu.pdx.cs410J.whitlock;
 
 import edu.pdx.cs410J.InvokeMainTestCase;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -32,7 +33,12 @@ public class StudentIT extends InvokeMainTestCase {
     assertThat(result.getTextWrittenToStandardError(), containsString("Invalid gpa: " + gpa));
   }
 
-  // When there are not enough command line arguments, exit with an error message
-
-
+  @Ignore
+  @Test
+  public void commandLineArgumentsFromAssignmentPrintExpectedStudentInformation() {
+    MainMethodResult result = invokeMain(Student.class, "Dave", "male", "3.64", "Algorithms", "Operating Systems", "Java");
+    assertThat(result.getTextWrittenToStandardError(), equalTo("Dave has a GPA of 3.64 and is taking 3 classes: Algorithms, Operating\n" +
+      "Systems, and Java. He says \"This class is too much work\"."));
+    assertThat(result.getExitCode(), equalTo(0));
+  }
 }
