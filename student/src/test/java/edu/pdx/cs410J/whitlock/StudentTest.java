@@ -33,14 +33,18 @@ public class StudentTest
   }
 
 
-  // Test that you can't create a student without a name
+  // When GPA is less than zero, issue a "range error"
+  @Test(expected = GPAOutOfBoundsException.class)
+  public void whenGPAIsLessThanZeroThrowGPAOutOfBoundsException() {
+    double gpa = -1.0;
+    new Student("name", new ArrayList<>(), gpa, "");
+  }
+
+  // When GPA is greater than 4.0, issue a "range error"
 
   // When the GPA is not a valid double, exit with an error message saying that the GPA must be decimal
 
   // When there are not enough command line arguments, exit with an error message
 
-  // When GPA is less than zero, issue a "range error"
-
-  // When GPA is greater than 4.0, issue a "range error"
 
 }

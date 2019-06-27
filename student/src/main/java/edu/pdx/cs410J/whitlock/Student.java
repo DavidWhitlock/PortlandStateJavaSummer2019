@@ -28,6 +28,10 @@ public class Student extends Human {
     if (name == null) {
       throw new NullPointerException("Name cannot be null");
     }
+
+    if (gpa < 0.0) {
+      throw new GPAOutOfBoundsException("GPA cannot be less than zero");
+    }
   }
 
   /**                                                                               
