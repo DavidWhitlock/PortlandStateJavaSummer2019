@@ -45,10 +45,4 @@ public class StudentTest
     new Student("name", new ArrayList<>(), gpa, "");
   }
 
-
-  // When the GPA is not a valid double, exit with an error message saying that the GPA must be decimal
-
-  // When there are not enough command line arguments, exit with an error message
-
-
 }

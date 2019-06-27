@@ -25,5 +25,14 @@ public class StudentIT extends InvokeMainTestCase {
     assertThat(result.getTextWrittenToStandardError(), containsString("Missing command line arguments"));
   }
 
+  @Test
+  public void whenGPAIsNotValidPrintErrorMessageToStandardError() {
+    String gpa = "gpa";
+    MainMethodResult result = invokeMain(Student.class, "Name", "gender", gpa, "class1");
+    assertThat(result.getTextWrittenToStandardError(), containsString("Invalid gpa: " + gpa));
+  }
+
+  // When there are not enough command line arguments, exit with an error message
+
 
 }
