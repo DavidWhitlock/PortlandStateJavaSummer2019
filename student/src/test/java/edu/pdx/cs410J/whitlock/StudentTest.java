@@ -33,14 +33,18 @@ public class StudentTest
   }
 
 
-  // When GPA is less than zero, issue a "range error"
   @Test(expected = GPAOutOfBoundsException.class)
   public void whenGPAIsLessThanZeroThrowGPAOutOfBoundsException() {
     double gpa = -1.0;
     new Student("name", new ArrayList<>(), gpa, "");
   }
 
-  // When GPA is greater than 4.0, issue a "range error"
+  @Test(expected = GPAOutOfBoundsException.class)
+  public void whenGPAIsGreaterThanFourThrowGPAOutOfBoundsException() {
+    double gpa = 4.1;
+    new Student("name", new ArrayList<>(), gpa, "");
+  }
+
 
   // When the GPA is not a valid double, exit with an error message saying that the GPA must be decimal
 

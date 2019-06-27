@@ -31,6 +31,9 @@ public class Student extends Human {
 
     if (gpa < 0.0) {
       throw new GPAOutOfBoundsException("GPA cannot be less than zero");
+
+    } else if (gpa > 4.0) {
+      throw new GPAOutOfBoundsException("GPA cannot be more than 4.0");
     }
   }
 
