@@ -10,6 +10,13 @@ Wrapper](https://github.com/takari/maven-wrapper) script which
 automatically downloads and installs the version of Maven needed for
 the programming projects.
 
+Prior to following these instructions, you may want to review the
+"Getting Started with Java"
+[slides](http://web.cecs.pdx.edu/~whitlock/pdf/Getting%20started%20with%20Java.pdf)
+and
+[screencast](https://www.youtube.com/watch?v=VZXEwcgigaw&list=SPyM7S4CZk9WPrtC8AclCNxOBA8buEJdib)
+from the [course's website](http://web.cecs.pdx.edu/~whitlock/).
+
 ## How do I use this repository?
 
 In order to use this repository, you must [intall
@@ -58,7 +65,7 @@ Then push the bare clone to your newly-created private repository.
 
 ```sh
 $ cd PortlandStateJavaGettingStarted.git
-$ git push --mirror git@github.com:YourGitHubUser/PortlandStateJavaSummer2019.git
+$ git push --mirror https://github.com/YourGitHubUser/PortlandStateJavaSummer2019.git
 ```
 
 If you view your repository on GitHub, you should see the changes
@@ -70,7 +77,7 @@ repository to work with.
 ```sh
 $ cd ..
 $ rm -rf PortlandStateJavaGettingStarted.git
-$ git clone git@github.com:YourGitHubUser/PortlandStateJavaSummer2019.git
+$ git clone https://github.com/YourGitHubUser/PortlandStateJavaSummer2019.git
 ```
 
 ### What do I need to do before I can use this repository?
@@ -91,7 +98,8 @@ directory in your home directory.  This configuration enables Maven to
 find the artifacts used for the course.
 
 ```sh
-$ cp settings.xml ~/.m2
+$ mkdir ~/.m2
+$ cp settings.xml ~/.m2/
 ```
 
 ### How do I create and run my own Java projects?
@@ -117,7 +125,7 @@ Wrapper included in the project.
 ```sh
 $ cd student
 $ chmod +x mvnw        # Make the wrapper script executable
-$ mvnw verify
+$ ./mvnw verify
 ```
 
 Note that the first time that you run Maven, it will download a whole
@@ -132,8 +140,8 @@ After creating a Maven project, you can add the code it to your local
 clone by adding the directory to git.
 
 ```sh
-$ mvnw clean     # Remove files that shouldn't be commited to version control
-$ cd ..    # to PortlandStateJavaGettingStarted directory
+$ ./mvnw clean     # Remove files that shouldn't be commited to version control
+$ cd ..    # to PortlandStateJavaSummer2019 directory
 $ git add student
 $ git commit -m "Added source files for student project"
 ```
@@ -157,7 +165,7 @@ First, configure your repository to have this repository to be a
 
 ```sh
 $ cd PortlandStateJavaSummer2019
-$ git remote add upstream git@github.com:DavidWhitlock/PortlandStateJavaGettingStarted.git
+$ git remote add upstream https://github.com/DavidWhitlock/PortlandStateJavaGettingStarted.git
 ```
 
 Then, you can "pull" and "merge" changes from the upstream repository
@@ -175,13 +183,32 @@ changes back to GitHub ("origin") with:
 $ git push
 ```
 
+## How do I use the "parent POM"?
+
+This repository includes a "parent" [pom.xml](pom.xml) file.  You'll
+need to edit the `pom.xml` file to include your user id and GitHub
+user name.  As you create projects (such as Project 1), they will be
+added as sub-modules to the parent POM.
+
+Having a parent project (POM) for all of your projects is convenient
+because it lets you build all of your code in one invocation of Maven.
+While this is not strictly necessary, it does enable easy integration
+with continuous integration tools such as Travis CI.  Travis CI is
+free for public repositories, but they appear to have an [educational
+program](https://education.travis-ci.com/) that is free to students
+with a GitHub education account.
+
+The parent project also allows you to create a multi-module [Maven
+site](https://maven.apache.org/guides/mini/guide-site.html) for all of
+your projects.
+
 ## How can I improve this repository?
 
 This repository is kind of thrown together and it ought to evolve to
 meet the needs of the students who take Advanced Programming with
 Java.  
 
-Feel free to [create issues](/issues) for this repository if you find
+Feel free to [create issues](../../issues) for this repository if you find
 something missing or confusing.
 
 It's even better, though, when someone contribute their own changes

@@ -12,18 +12,25 @@ if ! checkForMavenSettings; then
     exit 1
 fi
 
-if [ "$#" -ne 1 ]; then
-    echo "** Missing your student id"
-    exit 1
+if [ $# -lt 1 ]; then
+  echo "** You must specify a project name and a student id"
+  exit 1
+
+elif [ $# -lt 2 ]; then
+  echo "** Missing your student id"
+  exit 1
 fi
 
-studentId=$1
+
+projectName=$1
+studentId=$2
 
 ./mvnw --batch-mode archetype:generate \
   -DinteractiveMode=false \
   -DarchetypeGroupId=edu.pdx.cs410J \
-  -DarchetypeArtifactId=java-koans-archetype \
+  -DarchetypeArtifactId=student-archetype \
+  -DarchetypeVersion=Summer2019 \
   -DgroupId=edu.pdx.cs410J.${studentId} \
-  -DartifactId=koans \
+  -DartifactId=$projectName \
   -Dpackage=edu.pdx.cs410J.${studentId} \
   -Dversion=Summer2019
