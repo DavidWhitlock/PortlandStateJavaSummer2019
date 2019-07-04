@@ -41,4 +41,17 @@ public class StudentIT extends InvokeMainTestCase {
       "Systems, and Java. He says \"This class is too much work\"."));
     assertThat(result.getExitCode(), equalTo(0));
   }
+
+  @Test
+  public void unsupportedGenderPrintsErrorMessage() {
+    MainMethodResult result = invokeMain(Student.class, "Name", "Unsupported", "3.64", "Algorithms", "Operating Systems", "Java");
+    assertThat(result.getTextWrittenToStandardError(), containsString("Unsupported gender"));
+    assertThat(result.getExitCode(), equalTo(1));
+  }
+
+  @Test
+  public void femaleGenderReturnExitCodeZero() {
+    MainMethodResult result = invokeMain(Student.class, "Name", "female", "3.64", "Algorithms", "Operating Systems", "Java");
+    assertThat(result.getExitCode(), equalTo(0));
+  }
 }

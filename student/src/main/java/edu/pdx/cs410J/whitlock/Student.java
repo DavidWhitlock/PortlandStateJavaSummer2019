@@ -76,6 +76,28 @@ public class Student extends Human {
       System.err.println("Invalid gpa: " + gpaString);
     }
 
+    String genderString = args[1];
+    Gender gender = genderFromString(genderString);
+    if (gender == null) {
+      System.err.println("Unsupported gender");
+      System.exit(1);
+    }
+
+
+    System.exit(0);
+  }
+
+  private static Gender genderFromString(String genderString) {
+    switch (genderString.toLowerCase()) {
+      case "female":
+        return Gender.FEMALE;
+//      case "male":
+//        return Gender.MALE;
+//      case "other":
+//        return Gender.OTHER;
+      default:
+        return null;
+    }
   }
 
   public Gender getGender() {
