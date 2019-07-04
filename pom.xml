@@ -14,16 +14,18 @@ accordingly
     <groupId>edu.pdx.cs410J</groupId>
     <version>Summer2019</version>
   </parent>
-  <groupId>edu.pdx.cs410J.YourUserId</groupId>
+  <groupId>edu.pdx.cs410J.whitlock</groupId>
   <artifactId>PortlandStateJavaSummer2019</artifactId>
   <version>Summer2019</version>
 
   <packaging>pom</packaging>
   <name>PSUJavaSummer2019</name>
   <description>Source code written in the Summer 2019 offering of Advanced Programming with Java</description>
-  <url>http://YourGitHubUser.github.io/PortlandStateJavaSummer2019</url>
+  <url>http://davidwhitlock.github.io/PortlandStateJavaSummer2019</url>
 
   <modules>
+    <module>student</module>
+    <module>apptbook</module>
   </modules>
 
   <inceptionYear>2019</inceptionYear>
@@ -33,7 +35,7 @@ accordingly
   </organization>
   <issueManagement>
     <system>github</system>
-    <url>https://github.com/YourGitHubUser/PortlandStateJavaSummer2019/issues</url>
+    <url>https://github.com/DavidWhitlock/PortlandStateJavaSummer2019/issues</url>
   </issueManagement>
   <licenses>
     <license>
@@ -57,7 +59,7 @@ accordingly
     </developer>
   </developers>
   <scm>
-    <connection>scm:git:git@github.com:GitHubUserName/PortlandStateJavaSummer2019.git</connection>
+    <connection>scm:git:git@github.com:DavidWhitlock/PortlandStateJavaSummer2019.git</connection>
   </scm>
   <repositories>
     <repository>
@@ -70,7 +72,7 @@ accordingly
     <site>
       <id>gh-pages</id>
       <name>GitHub Pages</name>
-      <url>github:http://YourGitHubUser.github.io/PortlandStateJavaSummer2019/</url>
+      <url>github:http://davidwhitlock.github.io/PortlandStateJavaSummer2019/</url>
     </site>
   </distributionManagement>
 
