@@ -61,4 +61,10 @@ public class StudentIT extends InvokeMainTestCase {
     assertThat(result.getExitCode(), equalTo(0));
   }
 
+  @Test
+  public void otherGenderReturnExitCodeZero() {
+    MainMethodResult result = invokeMain(Student.class, "Name", "other", "3.64", "Algorithms", "Operating Systems", "Java");
+    assertThat(result.getExitCode(), equalTo(0));
+  }
+
 }

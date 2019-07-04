@@ -93,8 +93,8 @@ public class Student extends Human {
         return Gender.FEMALE;
       case "male":
         return Gender.MALE;
-//      case "other":
-//        return Gender.OTHER;
+      case "other":
+        return Gender.OTHER;
       default:
         return null;
     }
