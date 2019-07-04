@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Student.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Student Project</a> &gt; <a href="index.source.html" class="el_package">edu.pdx.cs410J.whitlock</a> &gt; <span class="el_source">Student.java</span></div><h1>Student.java</h1><pre class="source lang-java linenums">package edu.pdx.cs410J.whitlock;
+
+import edu.pdx.cs410J.lang.Human;
+
+import java.util.ArrayList;
+                                                                                    
+/**                                                                                 
+ * This class is represents a &lt;code&gt;Student&lt;/code&gt;.                                 
+ */                                                                                 
+public class Student extends Human {
+
+  private Gender gender;
+
+  /**
+   * Creates a new &lt;code&gt;Student&lt;/code&gt;                                             
+   *                                                                                
+   * @param name                                                                    
+   *        The student's name                                                      
+   * @param classes                                                                 
+   *        The names of the classes the student is taking.  A student              
+   *        may take zero or more classes.                                          
+   * @param gpa                                                                     
+   *        The student's grade point average                                       
+   * @param gender                                                                  
+   *        The student's gender (&quot;male&quot;, &quot;female&quot;, or &quot;other&quot;, case insensitive)
+   */                                                                               
+  public Student(String name, ArrayList&lt;String&gt; classes, double gpa, Gender gender) {
+<span class="fc" id="L28">    super(name);</span>
+
+<span class="fc bfc" id="L30" title="All 2 branches covered.">    if (name == null) {</span>
+<span class="fc" id="L31">      throw new NullPointerException(&quot;Name cannot be null&quot;);</span>
+    }
+
+<span class="fc bfc" id="L34" title="All 2 branches covered.">    if (gpa &lt; 0.0) {</span>
+<span class="fc" id="L35">      throw new GPAOutOfBoundsException(&quot;GPA cannot be less than zero&quot;);</span>
+
+<span class="fc bfc" id="L37" title="All 2 branches covered.">    } else if (gpa &gt; 4.0) {</span>
+<span class="fc" id="L38">      throw new GPAOutOfBoundsException(&quot;GPA cannot be more than 4.0&quot;);</span>
+    }
+
+<span class="fc" id="L41">    this.gender = gender;</span>
+<span class="fc" id="L42">  }</span>
+
+  /**
+   * All students say &quot;This class is too much work&quot;
+   */
+  @Override
+  public String says() {                                                            
+<span class="nc" id="L49">    throw new UnsupportedOperationException(&quot;Not implemented yet&quot;);</span>
+  }
+                                                                                    
+  /**                                                                               
+   * Returns a &lt;code&gt;String&lt;/code&gt; that describes this                              
+   * &lt;code&gt;Student&lt;/code&gt;.                                                          
+   */                                                                               
+  public String toString() {
+<span class="nc" id="L57">    throw new UnsupportedOperationException(&quot;Not implemented yet&quot;);</span>
+  }
+
+  /**
+   * Main program that parses the command line, creates a
+   * &lt;code&gt;Student&lt;/code&gt;, and prints a description of the student to
+   * standard out by invoking its &lt;code&gt;toString&lt;/code&gt; method.
+   */
+  public static void main(String[] args) {
+<span class="nc bnc" id="L66" title="All 2 branches missed.">    if (args.length == 0) {</span>
+<span class="nc" id="L67">      System.err.println(&quot;Missing command line arguments&quot;);</span>
+<span class="nc" id="L68">      System.exit(1);</span>
+    }
+
+<span class="nc" id="L71">    String gpaString = args[2];</span>
+    try {
+<span class="nc" id="L73">      double gpa = Double.parseDouble(gpaString);</span>
+
+<span class="nc" id="L75">    } catch (NumberFormatException ex) {</span>
+<span class="nc" id="L76">      System.err.println(&quot;Invalid gpa: &quot; + gpaString);</span>
+<span class="nc" id="L77">    }</span>
+
+<span class="nc" id="L79">    String genderString = args[1];</span>
+<span class="nc" id="L80">    Gender gender = genderFromString(genderString);</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">    if (gender == null) {</span>
+<span class="nc" id="L82">      System.err.println(&quot;Unsupported gender&quot;);</span>
+<span class="nc" id="L83">      System.exit(1);</span>
+    }
+
+
+<span class="nc" id="L87">    System.exit(0);</span>
+<span class="nc" id="L88">  }</span>
+
+  private static Gender genderFromString(String genderString) {
+<span class="nc bnc" id="L91" title="All 4 branches missed.">    switch (genderString.toLowerCase()) {</span>
+      case &quot;female&quot;:
+<span class="nc" id="L93">        return Gender.FEMALE;</span>
+      case &quot;male&quot;:
+<span class="nc" id="L95">        return Gender.MALE;</span>
+      case &quot;other&quot;:
+<span class="nc" id="L97">        return Gender.OTHER;</span>
+      default:
+<span class="nc" id="L99">        return null;</span>
+    }
+  }
+
+  public Gender getGender() {
+<span class="fc" id="L104">    return gender;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
