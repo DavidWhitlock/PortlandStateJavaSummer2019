@@ -91,8 +91,8 @@ public class Student extends Human {
     switch (genderString.toLowerCase()) {
       case "female":
         return Gender.FEMALE;
-//      case "male":
-//        return Gender.MALE;
+      case "male":
+        return Gender.MALE;
 //      case "other":
 //        return Gender.OTHER;
       default:
