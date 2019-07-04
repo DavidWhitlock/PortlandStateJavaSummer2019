@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 /**
@@ -63,5 +64,17 @@ public class StudentTest
     assertThat(student.getGender(), equalTo(Gender.OTHER));
   }
 
+  @Test
+  public void toStringContainsStudentName() {
+    String name = "Name";
+    Student student = createStudentNamed(name);
+    assertThat(student.toString(), containsString(name));
+  }
+
+  @Test
+  public void toStringContainsGpa() {
+    Student student = new Student("Name", new ArrayList<>(), 1.23, Gender.OTHER);
+    assertThat(student.toString(), containsString(" has a GPA of 1.23"));
+  }
 
 }

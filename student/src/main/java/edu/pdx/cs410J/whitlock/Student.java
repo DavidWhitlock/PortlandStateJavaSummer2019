@@ -9,7 +9,8 @@ import java.util.ArrayList;
  */                                                                                 
 public class Student extends Human {
 
-  private Gender gender;
+  private final double gpa;
+  private final Gender gender;
 
   /**
    * Creates a new <code>Student</code>                                             
@@ -38,6 +39,8 @@ public class Student extends Human {
       throw new GPAOutOfBoundsException("GPA cannot be more than 4.0");
     }
 
+    this.gpa = gpa;
+
     this.gender = gender;
   }
 
@@ -54,7 +57,7 @@ public class Student extends Human {
    * <code>Student</code>.                                                          
    */                                                                               
   public String toString() {
-    throw new UnsupportedOperationException("Not implemented yet");
+    return getName() + " has a GPA of " + gpa;
   }
 
   /**
