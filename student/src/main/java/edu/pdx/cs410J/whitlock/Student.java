@@ -7,9 +7,11 @@ import java.util.ArrayList;
 /**                                                                                 
  * This class is represents a <code>Student</code>.                                 
  */                                                                                 
-public class Student extends Human {                                                
-                                                                                    
-  /**                                                                               
+public class Student extends Human {
+
+  private String gender;
+
+  /**
    * Creates a new <code>Student</code>                                             
    *                                                                                
    * @param name                                                                    
@@ -35,6 +37,22 @@ public class Student extends Human {
     } else if (gpa > 4.0) {
       throw new GPAOutOfBoundsException("GPA cannot be more than 4.0");
     }
+
+    throwExceptionIfGenderIsNotSupported(gender);
+
+    this.gender = gender;
+  }
+
+  private void throwExceptionIfGenderIsNotSupported(String gender) {
+    switch (gender) {
+      case "male":
+      case "female":
+      case "other":
+        return;
+      default:
+        throw new IllegalArgumentException("Unsupported gender: " + gender);
+    }
+
   }
 
   /**                                                                               
@@ -73,4 +91,9 @@ public class Student extends Human {
     }
 
   }
+
+  public String getGender() {
+    return gender;
+  }
+
 }

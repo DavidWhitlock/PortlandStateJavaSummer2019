@@ -16,7 +16,7 @@ public class StudentTest
 {
 
   private Student createStudentNamed(String name) {
-    return new Student(name, new ArrayList<>(), 0.0, "Doesn't matter");
+    return new Student(name, new ArrayList<>(), 0.0, "other");
   }
 
   @Test
@@ -43,6 +43,29 @@ public class StudentTest
   public void whenGPAIsGreaterThanFourThrowGPAOutOfBoundsException() {
     double gpa = 4.1;
     new Student("name", new ArrayList<>(), gpa, "");
+  }
+
+  @Test
+  public void whenGenderIsFemaleStudentIsFemale() {
+    Student student = new Student("name", new ArrayList<>(), 1.0, "female");
+    assertThat(student.getGender(), equalTo("female"));
+  }
+
+  @Test
+  public void whenGenderIsMaleStudentIsMale() {
+    Student student = new Student("name", new ArrayList<>(), 1.0, "male");
+    assertThat(student.getGender(), equalTo("male"));
+  }
+
+  @Test
+  public void whenGenderIsOtherStudentIsOther() {
+    Student student = new Student("name", new ArrayList<>(), 1.0, "other");
+    assertThat(student.getGender(), equalTo("other"));
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void whenGenderIsNotSupportedThrowAnException() {
+    new Student("name", new ArrayList<>(), 1.0, "unsupported");
   }
 
 }
