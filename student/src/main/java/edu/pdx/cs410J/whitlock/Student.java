@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */                                                                                 
 public class Student extends Human {
 
-  private String gender;
+  private Gender gender;
 
   /**
    * Creates a new <code>Student</code>                                             
@@ -24,7 +24,7 @@ public class Student extends Human {
    * @param gender                                                                  
    *        The student's gender ("male", "female", or "other", case insensitive)
    */                                                                               
-  public Student(String name, ArrayList<String> classes, double gpa, String gender) {
+  public Student(String name, ArrayList<String> classes, double gpa, Gender gender) {
     super(name);
 
     if (name == null) {
@@ -38,24 +38,10 @@ public class Student extends Human {
       throw new GPAOutOfBoundsException("GPA cannot be more than 4.0");
     }
 
-    throwExceptionIfGenderIsNotSupported(gender);
-
     this.gender = gender;
   }
 
-  private void throwExceptionIfGenderIsNotSupported(String gender) {
-    switch (gender) {
-      case "male":
-      case "female":
-      case "other":
-        return;
-      default:
-        throw new IllegalArgumentException("Unsupported gender: " + gender);
-    }
-
-  }
-
-  /**                                                                               
+  /**
    * All students say "This class is too much work"
    */
   @Override
@@ -92,7 +78,7 @@ public class Student extends Human {
 
   }
 
-  public String getGender() {
+  public Gender getGender() {
     return gender;
   }
 

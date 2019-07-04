@@ -16,7 +16,7 @@ public class StudentTest
 {
 
   private Student createStudentNamed(String name) {
-    return new Student(name, new ArrayList<>(), 0.0, "other");
+    return new Student(name, new ArrayList<>(), 0.0, Gender.OTHER);
   }
 
   @Test
@@ -36,36 +36,32 @@ public class StudentTest
   @Test(expected = GPAOutOfBoundsException.class)
   public void whenGPAIsLessThanZeroThrowGPAOutOfBoundsException() {
     double gpa = -1.0;
-    new Student("name", new ArrayList<>(), gpa, "");
+    new Student("name", new ArrayList<>(), gpa, Gender.OTHER);
   }
 
   @Test(expected = GPAOutOfBoundsException.class)
   public void whenGPAIsGreaterThanFourThrowGPAOutOfBoundsException() {
     double gpa = 4.1;
-    new Student("name", new ArrayList<>(), gpa, "");
+    new Student("name", new ArrayList<>(), gpa, Gender.OTHER);
   }
 
   @Test
   public void whenGenderIsFemaleStudentIsFemale() {
-    Student student = new Student("name", new ArrayList<>(), 1.0, "female");
-    assertThat(student.getGender(), equalTo("female"));
+    Student student = new Student("name", new ArrayList<>(), 1.0, Gender.FEMALE);
+    assertThat(student.getGender(), equalTo(Gender.FEMALE));
   }
 
   @Test
   public void whenGenderIsMaleStudentIsMale() {
-    Student student = new Student("name", new ArrayList<>(), 1.0, "male");
-    assertThat(student.getGender(), equalTo("male"));
+    Student student = new Student("name", new ArrayList<>(), 1.0, Gender.MALE);
+    assertThat(student.getGender(), equalTo(Gender.MALE));
   }
 
   @Test
   public void whenGenderIsOtherStudentIsOther() {
-    Student student = new Student("name", new ArrayList<>(), 1.0, "other");
-    assertThat(student.getGender(), equalTo("other"));
+    Student student = new Student("name", new ArrayList<>(), 1.0, Gender.OTHER);
+    assertThat(student.getGender(), equalTo(Gender.OTHER));
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void whenGenderIsNotSupportedThrowAnException() {
-    new Student("name", new ArrayList<>(), 1.0, "unsupported");
-  }
 
 }
