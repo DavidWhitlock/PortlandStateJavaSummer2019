@@ -1,9 +1,10 @@
 package edu.pdx.cs410J.whitlock;
 
+import com.google.common.annotations.VisibleForTesting;
 import edu.pdx.cs410J.lang.Human;
 
-import java.util.ArrayList;
-                                                                                    
+import java.util.List;
+
 /**                                                                                 
  * This class is represents a <code>Student</code>.                                 
  */                                                                                 
@@ -11,6 +12,7 @@ public class Student extends Human {
 
   private final double gpa;
   private final Gender gender;
+  private final List<String> classes;
 
   /**
    * Creates a new <code>Student</code>                                             
@@ -25,7 +27,7 @@ public class Student extends Human {
    * @param gender                                                                  
    *        The student's gender ("male", "female", or "other", case insensitive)
    */                                                                               
-  public Student(String name, ArrayList<String> classes, double gpa, Gender gender) {
+  public Student(String name, List<String> classes, double gpa, Gender gender) {
     super(name);
 
     if (name == null) {
@@ -42,6 +44,8 @@ public class Student extends Human {
     this.gpa = gpa;
 
     this.gender = gender;
+
+    this.classes = List.copyOf(classes);
   }
 
   /**
@@ -57,7 +61,35 @@ public class Student extends Human {
    * <code>Student</code>.                                                          
    */                                                                               
   public String toString() {
-    return getName() + " has a GPA of " + gpa;
+    String s = getName() + " has a GPA of " + gpa + " and is taking " + this.classes.size() + " classes: ";
+    s += formatClasses(this.classes);
+    return s;
+  }
+
+  @VisibleForTesting
+  static String formatClasses(List<String> classes) {
+    int numberOfClasses = classes.size();
+    if (numberOfClasses == 0) {
+      return "";
+
+    } else if (numberOfClasses == 1) {
+      return classes.get(0);
+
+    } else if (numberOfClasses == 2) {
+      return classes.get(0) + " and " + classes.get(1);
+
+    } else {
+      StringBuilder sb = new StringBuilder();
+      for (int i = 0; i < numberOfClasses - 1; i++) {
+        String className = classes.get(i);
+        sb.append(className);
+        sb.append(", ");
+      }
+
+      sb.append("and ");
+      sb.append(classes.get(numberOfClasses - 1));
+      return sb.toString();
+    }
   }
 
   /**
@@ -107,4 +139,8 @@ public class Student extends Human {
     return gender;
   }
 
+  @VisibleForTesting
+  List<String> getClasses() {
+    return this.classes;
+  }
 }

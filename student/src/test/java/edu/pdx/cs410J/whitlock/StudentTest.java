@@ -3,8 +3,10 @@ package edu.pdx.cs410J.whitlock;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.core.IsEqual.equalTo;
 
@@ -75,6 +77,63 @@ public class StudentTest
   public void toStringContainsGpa() {
     Student student = new Student("Name", new ArrayList<>(), 1.23, Gender.OTHER);
     assertThat(student.toString(), containsString(" has a GPA of 1.23"));
+  }
+
+  @Test
+  public void toStringContainsThreeClasses() {
+    List<String> classes = List.of("Algorithms", "Operating Systems", "Java");
+    Student student = new Student("Name", classes, 1.23, Gender.OTHER);
+    assertThat(student.toString(), containsString("is taking 3 classes: Algorithms, Operating Systems, and Java"));
+  }
+
+  @Test(expected = UnsupportedOperationException.class)
+  public void cannotModifyAStudentsClasses() {
+    List<String> classes = new ArrayList<>();
+    String className = "Algorithms";
+    classes.add(className);
+    Student student = new Student("Name", classes, 1.23, Gender.OTHER);
+    student.getClasses().remove(0);
+  }
+
+  @Test
+  public void modifyingClassesListDoesNotImpactStudentsClasses() {
+    List<String> classes = new ArrayList<>();
+    String className = "Algorithms";
+    classes.add(className);
+    Student student = new Student("Name", classes, 1.23, Gender.OTHER);
+    classes.remove(0);
+    assertThat(student.getClasses(), contains(className));
+  }
+
+  @Test
+  public void formatOneClass() {
+    String className = "ClassName";
+    String s = Student.formatClasses(List.of(className));
+    assertThat(s, equalTo("ClassName"));
+  }
+
+  @Test
+  public void formatTwoClasses() {
+    String s = Student.formatClasses(List.of("One", "Two"));
+    assertThat(s, equalTo("One and Two"));
+  }
+
+  @Test
+  public void formatThreeClasses() {
+    String s = Student.formatClasses(List.of("One", "Two", "Three"));
+    assertThat(s, equalTo("One, Two, and Three"));
+  }
+
+  @Test
+  public void formatFourClasses() {
+    String s = Student.formatClasses(List.of("One", "Two", "Three", "Four"));
+    assertThat(s, equalTo("One, Two, Three, and Four"));
+  }
+
+  @Test
+  public void formatZeroClasses() {
+    String s = Student.formatClasses(List.of());
+    assertThat(s, equalTo(""));
   }
 
 }
