@@ -1,46 +1,9 @@
 package edu.pdx.cs410J.whitlock;
 
-import edu.pdx.cs410J.lang.Human;
-
-import java.util.ArrayList;
-                                                                                    
-/**                                                                                 
+/**
  * This class is represents a <code>Student</code>.                                 
  */                                                                                 
-public class LeapYear extends Human {
-                                                                                    
-  /**                                                                               
-   * Creates a new <code>Student</code>                                             
-   *                                                                                
-   * @param name                                                                    
-   *        The leapyear's name                                                      
-   * @param classes                                                                 
-   *        The names of the classes the leapyear is taking.  A leapyear              
-   *        may take zero or more classes.                                          
-   * @param gpa                                                                     
-   *        The leapyear's grade point average                                       
-   * @param gender                                                                  
-   *        The leapyear's gender ("male" or "female", or "other", case insensitive)
-   */                                                                               
-  public LeapYear(String name, ArrayList<String> classes, double gpa, String gender) {
-    super(name);
-  }
-
-  /**                                                                               
-   * All students say "This class is too much work"
-   */
-  @Override
-  public String says() {                                                            
-    throw new UnsupportedOperationException("Not implemented yet");
-  }
-                                                                                    
-  /**                                                                               
-   * Returns a <code>String</code> that describes this                              
-   * <code>Student</code>.                                                          
-   */                                                                               
-  public String toString() {
-    throw new UnsupportedOperationException("Not implemented yet");
-  }
+public class LeapYear {
 
   /**
    * Main program that parses the command line, creates a
