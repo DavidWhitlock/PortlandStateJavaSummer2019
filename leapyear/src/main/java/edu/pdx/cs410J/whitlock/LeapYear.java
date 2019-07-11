@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**                                                                                 
  * This class is represents a <code>Student</code>.                                 
  */                                                                                 
-public class Student extends Human {                                                
+public class LeapYear extends Human {
                                                                                     
   /**                                                                               
    * Creates a new <code>Student</code>                                             
@@ -22,7 +22,7 @@ public class Student extends Human {
    * @param gender                                                                  
    *        The leapyear's gender ("male" or "female", or "other", case insensitive)
    */                                                                               
-  public Student(String name, ArrayList<String> classes, double gpa, String gender) {
+  public LeapYear(String name, ArrayList<String> classes, double gpa, String gender) {
     super(name);
   }
 
