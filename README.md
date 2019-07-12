@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/YourGitHubId/PortlandStateJavaSummer2019.svg?branch=master)](https://travis-ci.org/YourGitHubId/PortlandStateJavaSummer2019)
+[![Build Status](https://travis-ci.org/DavidWhitlock/PortlandStateJavaSummer2019.svg?branch=master)](https://travis-ci.org/DavidWhitlock/PortlandStateJavaSummer2019)
 
 # Getting Started with Advanced Programming with Java
 
