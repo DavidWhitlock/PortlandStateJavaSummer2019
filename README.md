@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/YourGitHubId/PortlandStateJavaSummer2019.svg?branch=master)](https://travis-ci.org/YourGitHubId/PortlandStateJavaSummer2019)
+
 # Getting Started with Advanced Programming with Java
 
 This repository helps students in [Advanced Programming with
@@ -116,6 +118,13 @@ the name of the Java package for the project.
 $ ./createProject0.sh your-user-id
 ```
 
+(Note that in this document, I always prefix executables with `./` to
+ensure that the executable can be found even if you don't have `.` on
+your `PATH`.  Note also that for people who are developing on Windows
+machines, there is a `createProject0.cmd` that does the same thing as
+the shell script, but doesn't have as nice error checking.  Students
+have not been able to get the shell script to work under cygwin.)
+
 This script will generate a new Maven project in a directory named
 `student` for [Project
 0](http://web.cecs.pdx.edu/~whitlock/pdf/Student.pdf), the example
@@ -152,6 +161,43 @@ also use [git's branching
 features](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
 to easily revisit (and revise) your source code for Project 1 even
 though you've started working on Project 2.
+
+### How do I work with code from this repository using IntelliJ?
+
+[IntelliJ Idea](https://www.jetbrains.com/idea) is the recommended IDE
+for this course.  Opening up the `pom.xml` as a Project in IntelliJ
+will create a new IntelliJ workspace for that Maven project.  IntelliJ
+has excellent integration with GitHub and I recommend that you use
+IntelliJ's "Version Control" tools for committing changes to your code
+and pushing them to GitHub.
+
+Note that you must build the Maven project with `mvnw clean` **before
+you open the project in IntelliJ**.  If you do not build the Maven
+project first, none of the project's dependent libraries will be
+available to IntelliJ and your IDE will be very unhappy.  If you find
+yourself in this situation, close the IntelliJ project, and delete the
+`.iml` file and the `.idea` directory associated with Maven project.
+
+### How can I get a copy of this code on the CS Department's Linux machines?
+
+While your projects can be developed on any machine, they must be
+submitted on one of the CS Department's Linux machines.  This not only
+encourages you to build and test your code on the machines on which I
+will test your code, it is necessary because the `Submit` program
+sends an email through a PSU-managed SMTP server.
+
+GitHub makes it very easy to get a copy of your code on any machine.
+By making a clone of your repository on the CS Department's machine,
+you can be confident that you have all of your code and, as long as
+you have pushed all of your changes to GitHub, it will be the same
+code as you use on your development machine.
+
+After `ssh`ing to one of the CS Department's Linux machines, you can
+make a clone of your GitHub repository using with:
+
+```
+$ git clone https://github.com/YourGitHubId/PortlandStateJavaSummer2019.git
+```
 
 ### How can I get changes that other people make into my clone?
 
