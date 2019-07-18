@@ -28,6 +28,7 @@ accordingly
     <module>apptbook</module>
     <module>koans</module>
     <module>leapyear</module>
+    <module>apptbook-web</module>
   </modules>
 
   <inceptionYear>2019</inceptionYear>
