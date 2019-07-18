@@ -58,4 +58,22 @@ public class AppointmentBookServletTest {
     assertThat(servlet.getDefinition(word), equalTo(definition));
   }
 
+  @Test
+  public void lookingUpUnknownWordReturnNotFound() throws IOException, ServletException {
+    AppointmentBookServlet servlet = new AppointmentBookServlet();
+
+    HttpServletRequest request = mock(HttpServletRequest.class);
+    when(request.getParameter("word")).thenReturn("unknownWord");
+
+    HttpServletResponse response = mock(HttpServletResponse.class);
+    PrintWriter pw = mock(PrintWriter.class);
+
+    when(response.getWriter()).thenReturn(pw);
+
+    servlet.doGet(request, response);
+
+    verify(response).setStatus(HttpServletResponse.SC_NOT_FOUND);
+
+  }
+
 }

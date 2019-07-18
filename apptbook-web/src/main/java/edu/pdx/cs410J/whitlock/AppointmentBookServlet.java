@@ -115,12 +115,17 @@ public class AppointmentBookServlet extends HttpServlet
     {
         String definition = this.dictionary.get(word);
 
-        PrintWriter pw = response.getWriter();
-        pw.println(Messages.formatDictionaryEntry(word, definition));
+        if (definition == null) {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 
-        pw.flush();
+        } else {
+            PrintWriter pw = response.getWriter();
+            pw.println(Messages.formatDictionaryEntry(word, definition));
 
-        response.setStatus( HttpServletResponse.SC_OK );
+            pw.flush();
+
+            response.setStatus(HttpServletResponse.SC_OK);
+        }
     }
 
     /**
