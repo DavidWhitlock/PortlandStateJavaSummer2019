@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 
 /**
@@ -36,26 +36,36 @@ public class AppointmentBookServletTest {
   }
 
   @Test
-  public void addOneWordToDictionary() throws ServletException, IOException {
+  public void addAppointmentToNewAppointmentBook() throws ServletException, IOException {
     AppointmentBookServlet servlet = new AppointmentBookServlet();
 
-    String word = "TEST WORD";
-    String definition = "TEST DEFINITION";
+    String owner = "TEST WORD";
+    String description = "TEST DEFINITION";
+    String beginTime = "1/1/2019 1:00 am";
+    String endTime = "1/1/2019 2:00 am";
 
     HttpServletRequest request = mock(HttpServletRequest.class);
-    when(request.getParameter("word")).thenReturn(word);
-    when(request.getParameter("definition")).thenReturn(definition);
+    when(request.getParameter("owner")).thenReturn(owner);
+    when(request.getParameter("description")).thenReturn(description);
+    when(request.getParameter("beginTime")).thenReturn(beginTime);
+    when(request.getParameter("endTime")).thenReturn(endTime);
 
     HttpServletResponse response = mock(HttpServletResponse.class);
-    PrintWriter pw = mock(PrintWriter.class);
-
-    when(response.getWriter()).thenReturn(pw);
 
     servlet.doPost(request, response);
-    verify(pw).println(Messages.definedWordAs(word, definition));
     verify(response).setStatus(HttpServletResponse.SC_OK);
 
-    assertThat(servlet.getDefinition(word), equalTo(definition));
+    AppointmentBook book = servlet.getAppointmentBook(owner);
+    assertThat(book, is(notNullValue()));
+
+    assertThat(book.getAppointments(), hasSize(1));
+    assertThat(book.getOwnerName(), equalTo(owner));
+
+    Appointment appointment = book.getAppointments().iterator().next();
+    assertThat(appointment, is(notNullValue()));
+    assertThat(appointment.getDescription(), equalTo(description));
+    assertThat(appointment.getBeginTimeString(), equalTo(beginTime));
+    assertThat(appointment.getEndTimeString(), equalTo(endTime));
   }
 
   @Test
