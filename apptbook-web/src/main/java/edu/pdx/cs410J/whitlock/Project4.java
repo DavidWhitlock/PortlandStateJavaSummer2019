@@ -71,7 +71,7 @@ public class Project4 {
 
             } else {
                 // Post the word/definition pair
-                client.addDictionaryEntry(word, definition);
+//                client.addAppointment(owner, description, word, definition);
                 message = Messages.definedWordAs(word, definition);
             }
 

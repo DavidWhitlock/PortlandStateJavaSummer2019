@@ -27,9 +27,9 @@ public class AppointmentBookRestClientIT {
   }
 
   @Test
-  public void test0RemoveAllDictionaryEntries() throws IOException {
+  public void test0RemoveAllAppointmentBooks() throws IOException {
     AppointmentBookRestClient client = newAppointmentBookRestClient();
-    client.removeAllDictionaryEntries();
+    client.removeAllAppointmentBooks();
   }
 
   @Test
@@ -40,14 +40,18 @@ public class AppointmentBookRestClientIT {
   }
 
   @Test
-  public void test2DefineOneWord() throws IOException {
+  public void test2OneAppointment() throws IOException {
     AppointmentBookRestClient client = newAppointmentBookRestClient();
-    String testWord = "TEST WORD";
-    String testDefinition = "TEST DEFINITION";
-    client.addDictionaryEntry(testWord, testDefinition);
+    String owner = "TEST WORD";
+    String description = "TEST DEFINITION";
+    String beginTime = "Now";
+    String endTime = "Later";
 
-    String definition = client.getDefinition(testWord);
-    assertThat(definition, equalTo(testDefinition));
+    String appointmentToString = client.addAppointment(owner, description, beginTime, endTime);
+
+    assertThat(appointmentToString, containsString(description));
+    assertThat(appointmentToString, containsString(beginTime));
+    assertThat(appointmentToString, containsString(endTime));
   }
 
   @Test
