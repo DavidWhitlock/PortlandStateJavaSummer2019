@@ -17,8 +17,10 @@ public class Project4 {
     public static void main(String... args) {
         String hostName = null;
         String portString = null;
-        String word = null;
-        String definition = null;
+        String owner = null;
+        String description = null;
+        String beginTime = null;
+        String endTime = null;
 
         for (String arg : args) {
             if (hostName == null) {
@@ -27,11 +29,17 @@ public class Project4 {
             } else if ( portString == null) {
                 portString = arg;
 
-            } else if (word == null) {
-                word = arg;
+            } else if (owner == null) {
+                owner = arg;
 
-            } else if (definition == null) {
-                definition = arg;
+            } else if (description == null) {
+                description = arg;
+
+            } else if (beginTime == null) {
+                beginTime = arg;
+
+            } else if (endTime == null) {
+                endTime = arg;
 
             } else {
                 usage("Extraneous command line argument: " + arg);
@@ -58,21 +66,20 @@ public class Project4 {
 
         String message;
         try {
-            if (word == null) {
+            if (owner == null) {
                 // Print all word/definition pairs
                 Map<String, String> dictionary = client.getAllDictionaryEntries();
                 StringWriter sw = new StringWriter();
                 Messages.formatDictionaryEntries(new PrintWriter(sw, true), dictionary);
                 message = sw.toString();
 
-            } else if (definition == null) {
+            } else if (description == null) {
                 // Print all dictionary entries
-                message = Messages.formatDictionaryEntry(word, client.getDefinition(word));
+                message = Messages.formatDictionaryEntry(owner, client.getDefinition(owner));
 
             } else {
-                // Post the word/definition pair
-//                client.addAppointment(owner, description, word, definition);
-                message = Messages.definedWordAs(word, definition);
+                // Create the new appointment
+                message = client.addAppointment(owner, description, beginTime, endTime);
             }
 
         } catch ( IOException ex ) {

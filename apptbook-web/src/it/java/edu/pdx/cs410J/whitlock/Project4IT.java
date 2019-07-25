@@ -54,21 +54,17 @@ public class Project4IT extends InvokeMainTestCase {
     }
 
     @Test
-    public void test4AddDefinition() {
-        String word = "WORD";
-        String definition = "DEFINITION";
+    public void test4AddAppointment() {
+        String owner = "Owner";
+        String description = "Do Stuff";
+        String beginTime = "Now";
+        String endTime = "Later";
 
-        MainMethodResult result = invokeMain( Project4.class, HOSTNAME, PORT, word, definition );
+        MainMethodResult result = invokeMain( Project4.class, HOSTNAME, PORT, owner, description, beginTime, endTime );
         assertThat(result.getTextWrittenToStandardError(), result.getExitCode(), equalTo(0));
         String out = result.getTextWrittenToStandardOut();
-        assertThat(out, out, containsString(Messages.definedWordAs(word, definition)));
-
-        result = invokeMain( Project4.class, HOSTNAME, PORT, word );
-        out = result.getTextWrittenToStandardOut();
-        assertThat(out, out, containsString(Messages.formatDictionaryEntry(word, definition)));
-
-        result = invokeMain( Project4.class, HOSTNAME, PORT );
-        out = result.getTextWrittenToStandardOut();
-        assertThat(out, out, containsString(Messages.formatDictionaryEntry(word, definition)));
+        assertThat(out, out, containsString(description));
+        assertThat(out, out, containsString(beginTime));
+        assertThat(out, out, containsString(endTime));
     }
 }
