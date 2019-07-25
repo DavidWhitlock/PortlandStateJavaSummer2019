@@ -67,6 +67,8 @@ public class AppointmentBookServlet extends HttpServlet
         Appointment appt = new Appointment(description, beginTime, endTime);
         book.addAppointment(appt);
 
+        response.getWriter().println(appt.toString());
+
         response.setStatus( HttpServletResponse.SC_OK);
     }
 

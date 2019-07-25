@@ -51,6 +51,9 @@ public class AppointmentBookServletTest {
     when(request.getParameter("endTime")).thenReturn(endTime);
 
     HttpServletResponse response = mock(HttpServletResponse.class);
+    PrintWriter pw = mock(PrintWriter.class);
+
+    when(response.getWriter()).thenReturn(pw);
 
     servlet.doPost(request, response);
     verify(response).setStatus(HttpServletResponse.SC_OK);
@@ -66,6 +69,8 @@ public class AppointmentBookServletTest {
     assertThat(appointment.getDescription(), equalTo(description));
     assertThat(appointment.getBeginTimeString(), equalTo(beginTime));
     assertThat(appointment.getEndTimeString(), equalTo(endTime));
+
+    verify(pw).println(appointment.toString());
   }
 
   @Test
