@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 /**
@@ -134,6 +133,11 @@ public class StudentTest
   public void formatZeroClasses() {
     String s = Student.formatClasses(List.of());
     assertThat(s, equalTo(""));
+  }
+
+  @Test
+  public void canIntsBeComparedWithHamcrestLessThan() {
+    assertThat(4, is(lessThan(5)));
   }
 
 }
