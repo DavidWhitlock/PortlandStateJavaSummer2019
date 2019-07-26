@@ -35,7 +35,7 @@ public class AppointmentBookServlet extends HttpServlet
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException
     {
         response.setContentType( "text/plain" );
-
+        response.setStatus(HttpServletResponse.SC_NOT_FOUND);
     }
 
     /**
