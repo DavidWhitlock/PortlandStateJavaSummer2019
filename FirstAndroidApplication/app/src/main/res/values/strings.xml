@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">First Android App</string>
+    <string-array name="days_of_the_week">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+    </string-array>
 </resources>
