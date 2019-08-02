@@ -3,14 +3,19 @@ package edu.pdx.cs410J.whitlock.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextClock;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -90,5 +95,20 @@ public class MainActivity extends AppCompatActivity  {
     public void displayCurrentTimeInEditText(View view) {
         TextClock clock = (TextClock) view;
         setMessage(clock.getText());
+    }
+
+    public void doubleNumber(View view) {
+        EditText numberToDouble = findViewById(R.id.number);
+        String numberAsString = numberToDouble.getText().toString();
+        try {
+            int number = Integer.parseInt(numberAsString);
+            Uri uri = Uri.fromParts("number", String.valueOf(number), null);
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri, this, DoubleNumberActivity.class);
+            intent.putExtra("number", number);
+            startActivity(intent);
+
+        } catch (NumberFormatException ex) {
+            Toast.makeText(this, "Bad number: " + numberAsString, Toast.LENGTH_SHORT).show();
+        }
     }
 }
