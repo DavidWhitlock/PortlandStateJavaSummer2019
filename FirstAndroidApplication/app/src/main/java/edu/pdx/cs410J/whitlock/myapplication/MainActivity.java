@@ -1,9 +1,5 @@
 package edu.pdx.cs410J.whitlock.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +11,19 @@ import android.widget.ListView;
 import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 import edu.pdx.cs410J.AbstractAppointment;
 
@@ -85,7 +94,35 @@ public class MainActivity extends AppCompatActivity  {
     protected void onStart() {
         super.onStart();
 
+        displayTextFromFile();
+
         displayCount();
+    }
+
+    private void displayTextFromFile() {
+        TextView textFromFile = findViewById(R.id.textFromFile);
+
+        File file = new File( getApplicationContext().getFilesDir(), "file.txt");
+        String text;
+        Path path = file.toPath();
+        if (file.exists()) {
+            try {
+                List<String> lines = Files.readAllLines(path);
+                text = String.join(", ", lines);
+            } catch (IOException e) {
+                text = e.getMessage();
+            }
+
+        } else {
+            text = "This program hasn't been run yet";
+        }
+        textFromFile.setText(text);
+
+        try {
+            Files.write(path, Collections.singletonList(new Date().toString()), StandardOpenOption.WRITE, StandardOpenOption.CREATE);
+        } catch (IOException e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
