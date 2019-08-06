@@ -16,6 +16,8 @@ import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import edu.pdx.cs410J.AbstractAppointment;
+
 public class MainActivity extends AppCompatActivity  {
 
     private static final int DOUBLE_NUMBER = 1;
@@ -54,6 +56,23 @@ public class MainActivity extends AppCompatActivity  {
 
     private void displayCount() {
         String message = "The count is " + count;
+        message += " " + new AbstractAppointment() {
+
+            @Override
+            public String getBeginTimeString() {
+                return "now";
+            }
+
+            @Override
+            public String getEndTimeString() {
+                return "later";
+            }
+
+            @Override
+            public String getDescription() {
+                return "Do stuff";
+            }
+        }.toString();
         setMessage(message);
     }
 
