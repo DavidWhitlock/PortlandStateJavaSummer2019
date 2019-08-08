@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity  {
         try {
             int number = Integer.parseInt(numberAsString);
             Uri uri = Uri.fromParts("number", String.valueOf(number), null);
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri, this, DoubleNumberActivity.class);
+            Intent intent = new Intent(Intent.ACTION_VIEW, null, this, DoubleNumberActivity.class);
             intent.putExtra("number", number);
             startActivityForResult(intent, DOUBLE_NUMBER);
 

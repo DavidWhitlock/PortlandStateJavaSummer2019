@@ -18,6 +18,7 @@
         android:autofillHints="The number you want to double" />
 
     <Button
+        android:id="@+id/doubleNumber"
         android:text="Double above number"
         android:onClick="doubleNumber"
         android:layout_width="wrap_content"
